@@ -1,0 +1,7 @@
+[
+    {"marca":"cocacola", "precio":510, "contenido":2.25, "stock": true},
+    {"marca":"coca light", "precio":520, "contenido":2.25, "stock": false},
+    {"marca":"cunnington", "precio":206, "contenido":2.25, "stock": true},
+    {"marca":"pepsi", "precio":390, "contenido":225, "stock":true},
+    {"marca":"doble cola", "precio":238, "contenido":2.25, "stock": true}
+]
