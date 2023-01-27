@@ -23,6 +23,7 @@ tocarBoton.addEventListener ('click', ()=>{
         position: 'top-end',
         icon: 'success',
         title: 'Has comprado un producto!',
+        background: '#b9e17ca8',
         showConfirmButton: false,
     });
     setTimeout (()=>{ //agrego setTimeout() al sweet alert para que cierre automatico pasados 2 segundos
