@@ -39,7 +39,7 @@ if (fernet == 3) console.log ("Tenemos 3 fernet") ;
 */
 
 
-//Modal con SweetAlert2 para permitir la visualizacion de contenido de la pagina(o no)dependiendo de lo que clickee el user
+//Modal con SweetAlert2 para permitir la visualizacion de contenido de la pagina(o no)dependiendo de lo que clickee el user. Si clickease que es menor de edad, se dispararia el eventListener que cambia el estilo css del div "disclaimer" del valor -none- al valor -block- , mostrandose asi en pantalla los terminos y condiciones del siito.
 Swal.fire({
     title: 'Verificá tu edad',
     text: "Prohibido el ingreso a menores de edad",
@@ -67,6 +67,7 @@ Swal.fire({
     }else Swal.clickCancel();
 }
 )
+
 
 const mainDisclaimer = document.querySelector('.disclaimer');
 
@@ -155,7 +156,7 @@ console.log(stockTotal);
 
 //le cambio la disponibilidad de stock a "branca menta" del array de objetos de stockFernet
 stockFernet[3].stock = true ;
-console.log(stockFernet);
+console.log(stockFernet);  
 
 //uso de filter para aquellos que tengan precio de 1300 o menor
 const resultado = stockFernet.filter ((el)=> el.precio <= 1300);
@@ -243,7 +244,7 @@ login.addEventListener('click', async ()=>{
 
 
 const inicioUsuario = document.querySelector("#body > main > div > div > div.swal2-actions > button.swal2-confirm.swal2-styled.swal2-default-outline");
-
+//funcion que al ser llamada luego en el listener de evento crea una nueva instancia del objeto Date, permitiendo asi saber la fecha, horario y zona horaria en la que el usuario se registra
 function fechar() {
     sessionStorage.setItem('Hora ingreso al sistema', new Date());
     console.log("Se instancio la hora de ingreso al sitio");
@@ -267,7 +268,6 @@ botellasFernet.addEventListener ( "keypress" , (e)=>{
 }); 
 
 
-
 //declaro variables constantes igualandolas a nodos del documento ( en este caso 1 input number y luego 1 boton)
 const campoBF = document.getElementById('c-input');
 
@@ -277,7 +277,7 @@ const campoBG = document.getElementById('e-input');
 
 const sumaBG = document.getElementById('sumaBG');
 
-
+//Declaro la variable guardadoBotellasF igualandola al valor 0 para luego mediante un "escuchador de eventos" tomar el valor ingresado por el usuario mediante el input del documento HTML y guardar ese numero en el storage del navegador.
 let guardadoBotellasF = 0;
 sumaBF.addEventListener('click', ()=> {
     let guardadoBotellasF = parseFloat(document.getElementById('c-input').value);
@@ -295,17 +295,19 @@ sumaBG.addEventListener('click', ()=> {
 })
 
 
+//destructuracion de cada objeto del array stockfernet dandole por nombre a la variable A
 let {id, marca, precio, contenido, stock} = a;
 console.log(a.precio);
 
 const divPrecioFernet = document.querySelector('.precio-fernet');
+
 
 cantidadFernet.addEventListener('change', ()=>{
     let valorSeleccionado = cantidadFernet.value;
     console.log(valorSeleccionado);
     parrafoFernet.textContent = `Seleccionaste:  ${valorSeleccionado}`;
 
-
+// guardo en la variable constante buscaMarca un mapeo de un nuevo array del array de objetos stockFernet, devolviendo dentro del nuevo solo la marca y precio de cada item para luego usarlo.
     const buscaMarca = stockFernet.map((busca)=>{
         return {
             marca: busca.marca,
@@ -318,6 +320,8 @@ cantidadFernet.addEventListener('change', ()=>{
     const buscaPrecios = stockFernet.map((busca)=> busca.precio );
     console.log(buscaPrecios);
 
+
+    //Con un condicional largo comparo si lo que selecciona el usuario mediante el <select> del documento es estrictamente igual al nombre(marca)de uno de los objetos contenidos en el array stockFernet y dependiendo el indice de ese objeto ([0]a [5]) devuelvo al documento mediante el manejo del DOM el precio de cada producto
     if (valorSeleccionado === "branca"){
         divPrecioFernet.innerHTML = `<h4> Precio: $ ${buscaMarca[0].precio} </h4>`;
     }else if (valorSeleccionado === "vittone"){
@@ -333,7 +337,7 @@ cantidadFernet.addEventListener('change', ()=>{
     }
 });
 
-
+//Declaro variables constantes igualandolas a distintos ID correspondientes al documento HTML para luego utilizar un evento y devolver la gaseosa seleccionada por el usuario
 const selectorGaseosa = document.querySelector('#d-input');
 const showValueGaseosa  = document.querySelector('#value-gaseosa')
 
@@ -400,15 +404,15 @@ function mezcla (){
 
 console.log(mezclaTotal);
 
-//PROBLEMA 2 - en este no puedo capturar de forma global lo que ingresa el usuario para despues sumar los dos datos recibidos de los inputs de la variable suma
-
 const mezclaRealizada = document.getElementById ('resultadoSuma');
 
 const parrafoSuma = document.getElementById("parrafo-suma");
 
 
 
-//Clase constructora de objeto llamado Usuarios
+//Clase constructora de objeto llamado Usuarios (no logre darle uso en mi proyecto, pero al menos quiero demostrar lo siguiente)
+//La clase constructora de objetos llamada Usuarios permite instanciar luego conm el uso de new y pasandole los valores de las propiedades nombre y edad, que a su vez son los parametros de la clase Usuarios
+//Ademas para demostrar el uso de una funcion que al estar dentro de un objeto se transforma en metodo del mismo, puedo luego llamarala en el user1 que es una de las nuevas instancias del objeto para lograr realizar en este caso un saludo al usuario.
 class Usuarios {
     constructor (nombre, edad){
         this.nombre = nombre;
@@ -422,3 +426,5 @@ class Usuarios {
 const user1 = new Usuarios ("Luis" , 19);
 user1.bienvida();
 console.log(user1.edad);
+const user2 = new Usuarios ("Kbz" , 47);
+user2.bienvenida();
